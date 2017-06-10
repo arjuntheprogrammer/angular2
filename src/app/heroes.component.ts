@@ -10,19 +10,21 @@ import {Router} from '@angular/router'
 @Component({
   selector: 'my-heroes',
   templateUrl:'./heroes.component.html',
-  stylesUrls: ['./heroes.component.css'],
+  styleUrls: ['./heroes.component.css'],
  })
-
   export class HeroesComponent implements OnInit{
 
     heroes : Hero[];
     selectedHero: Hero;
 
 
-    constructor(private heroService: HeroService, private router: Router){}
+    constructor(private heroService: HeroService,
+      private router: Router
+    ){}
 
     getHeroes(): void{
-      this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+      this.heroService.getHeroes()
+      .then(heroes => this.heroes = heroes);
     }
 
     ngOnInit(): void{
