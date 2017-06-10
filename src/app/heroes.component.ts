@@ -17,7 +17,6 @@ import {Router} from '@angular/router'
     heroes : Hero[];
     selectedHero: Hero;
 
-
     constructor(private heroService: HeroService,
       private router: Router
     ){}
@@ -36,5 +35,19 @@ import {Router} from '@angular/router'
     goToDetail():void{
       this.router.navigate(['/detail', this.selectedHero.id]);
     }
+    add(name: string): void{
+        name = name.trim();
+        if(!name) {return;}
+        this.heroService.create(name)
+                        .then(hero=>{
+                          this.heroes.push(hero);
+                          this.selectedHero=null;
+                        });
+    }
+
+
+
+
+
 
   }
